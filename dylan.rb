@@ -7,3 +7,8 @@
 # puts "Roadie lit"
 # puts "i'm a roadie intern"
 
+# drawing basic shapes
+puts "   /|"
+puts "  / |"
+puts " /  |"
+puts "/___|"
