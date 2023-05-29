@@ -47,3 +47,9 @@ puts num.floor()    # rounds down to nearest integer
 puts Math.sqrt(36)
 puts Math.log(1)
 
+# getting user input
+puts "Enter your name: "
+name = gets.chomp()
+puts "Enter your age: "
+age = gets.chomp()
+puts ("Hello " + name + ", you are " + age + " years old and a roadie intern.")
