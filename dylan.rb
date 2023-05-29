@@ -31,3 +31,19 @@ puts phrase.include? "intern"
 puts phrase[5,9]
 puts phrase.index("D")
 
+# working with numbers
+puts 5
+puts -5.5
+puts 5 % 9
+puts 2**3
+num = 20
+puts ("My favorite number is " + num.to_s)
+num = -20.687
+puts num.abs()
+puts num.round()    # rounds to nearest integer
+num = 20.1
+puts num.ceil()    # rounds up to nearest integer
+puts num.floor()    # rounds down to nearest integer
+puts Math.sqrt(36)
+puts Math.log(1)
+
