@@ -21,3 +21,13 @@ puts ("My name is " + name + ".")
 puts ("I am " + age.to_s + " years old.")
 puts ("In one year, I will be " + (age + 1).to_s + " years old.")
 
+# working with strings
+phrase = "   Dylan is a roadie intern   "
+puts phrase.upcase()
+puts phrase.downcase()
+puts phrase.strip()
+puts phrase.length()
+puts phrase.include? "intern"
+puts phrase[5,9]
+puts phrase.index("D")
+
