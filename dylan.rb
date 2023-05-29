@@ -12,3 +12,12 @@ puts "   /|"
 puts "  / |"
 puts " /  |"
 puts "/___|"
+
+# variables + data types
+name = "Dylan"
+age = 20
+
+puts ("My name is " + name + ".")
+puts ("I am " + age.to_s + " years old.")
+puts ("In one year, I will be " + (age + 1).to_s + " years old.")
+
