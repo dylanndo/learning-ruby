@@ -70,3 +70,14 @@ puts
 puts friends.reverse()  # reverses order of elements in array
 puts
 puts friends.sort()    # sorts elements in array alphabetically
+
+# hashes
+states = {
+    "Virginia" => "VA", # can use strings as keys
+    :Maryland => "MD",  # can use symbols as keys
+    1 => "NY"  # can use integers as keys
+}
+
+puts states["Virginia"]
+puts states[:Maryland]
+puts states[1]
