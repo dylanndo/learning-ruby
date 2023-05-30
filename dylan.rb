@@ -53,3 +53,20 @@ name = gets.chomp()
 puts "Enter your age: "
 age = gets.chomp()
 puts ("Hello " + name + ", you are " + age + " years old and a roadie intern.")
+
+# arrays
+friends = Array["David", "Brandon", "Seonho"]   # can put mixed data types in an array
+puts friends[-1]
+puts
+puts friends[1,2]   # prints 2 elements starting from index 1
+puts
+friends[3] = "Omar"
+puts friends[-1]
+puts
+puts friends.length()
+puts
+puts friends.include? "Brandon" 
+puts
+puts friends.reverse()  # reverses order of elements in array
+puts
+puts friends.sort()    # sorts elements in array alphabetically
