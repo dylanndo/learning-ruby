@@ -15,6 +15,8 @@ verb2 = gets.chomp().upcase()
 puts "Enter another verb: "
 verb3 = gets.chomp().upcase()
 
+puts "\n\nRESULTS:\n"
+
 puts ("It was " + food + " day at school, and " + name + " was super " + adjective + " for lunch.")
 puts ("But when she went outside to eat, a " + noun + " stole her " + food + "! ")
 puts (name + " chased the " + noun + " all over school.")
