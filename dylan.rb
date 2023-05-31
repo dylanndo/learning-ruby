@@ -81,3 +81,18 @@ states = {
 puts states["Virginia"]
 puts states[:Maryland]
 puts states[1]
+
+# methods and return statements
+def sayhi(name = "Jane Doe", age = -1)
+    puts ("Hello " + name + ", you are " + age.to_s + " years old.")
+end
+
+sayhi("Dylan", 20)
+sayhi
+
+def cube(num)
+    return num * num * num, 70 # can return multiple values
+end
+
+puts cube(3)[0]
+puts cube(3)[1]
