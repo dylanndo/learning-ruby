@@ -96,3 +96,18 @@ end
 
 puts cube(3)[0]
 puts cube(3)[1]
+
+# if statements
+ismale = true
+istall = false
+
+if ismale and istall
+    puts "You are a tall male"
+elsif not(ismale) and istall
+    puts "You are a tall female"
+elsif ismale and !istall
+    puts "You are a short male"
+else
+    puts "You are a short female"
+end
+
