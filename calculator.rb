@@ -1,3 +1,5 @@
+operators = ["+", "-", "*", "/"]
+
 puts "Enter a number: "
 num1 = gets.chomp().to_f
 puts "Enter an operator: "
