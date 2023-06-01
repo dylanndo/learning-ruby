@@ -33,10 +33,14 @@ def calculate(expression)
             # find first operator
             if multiply_index == nil && divide_index == nil
                 break
-            elsif multiply_index == nil && divide_index >= 0 or divide_index < multiply_index
+            elsif multiply_index == nil && divide_index >= 0
                 multiply_divide_index = divide_index
-            elsif multiply_index >= 0 && divide_index == nil or multiply_index < divide_index
+            elsif multiply_index >= 0 && divide_index == nil
                 multiply_divide_index = multiply_index
+            elsif divide_index == nil && multiply_index >= 0
+                multiply_divide_index = multiply_index
+            else
+                multiply_divide_index = [multiply_index, divide_index].min
             end
             
             i = multiply_divide_index - 1
@@ -100,10 +104,12 @@ def calculate(expression)
             # find first operator
             if add_index == nil && subtract_index == nil
                 break
-            elsif add_index == nil && subtract_index >= 0 or subtract_index < add_index
+            elsif add_index == nil && subtract_index >= 0
                 add_subtract_index = subtract_index
-            elsif add_index >= 0 && subtract_index == nil or add_index < subtract_index
+            elsif subtract_index == nil && add_index >= 0
                 add_subtract_index = add_index
+            else
+                add_subtract_index = [add_index, subtract_index].min
             end
             
             i = add_subtract_index - 1
