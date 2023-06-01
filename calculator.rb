@@ -23,7 +23,7 @@ def calculate(expression)
         finish = expression.index(")")
         start = expression.rindex("(", finish)
         grouped_expression = expression[start + 1...finish].lstrip.rstrip
-        
+
         # account for multiplication and division
         while grouped_expression.index("*") != nil or grouped_expression.index("/") != nil
             multiply_index = grouped_expression.index("*")
@@ -33,10 +33,10 @@ def calculate(expression)
             # find first operator
             if multiply_index == nil && divide_index == nil
                 break
-            elsif multiply_index >= 0 && divide_index == nil or multiply_index < divide_index
-                multiply_divide_index = multiply_index
             elsif multiply_index == nil && divide_index >= 0 or divide_index < multiply_index
                 multiply_divide_index = divide_index
+            elsif multiply_index >= 0 && divide_index == nil or multiply_index < divide_index
+                multiply_divide_index = multiply_index
             end
             
             i = multiply_divide_index - 1
@@ -100,10 +100,10 @@ def calculate(expression)
             # find first operator
             if add_index == nil && subtract_index == nil
                 break
-            elsif add_index >= 0 && subtract_index == nil or add_index < subtract_index
-                add_subtract_index = add_index
             elsif add_index == nil && subtract_index >= 0 or subtract_index < add_index
                 add_subtract_index = subtract_index
+            elsif add_index >= 0 && subtract_index == nil or add_index < subtract_index
+                add_subtract_index = add_index
             end
             
             i = add_subtract_index - 1
