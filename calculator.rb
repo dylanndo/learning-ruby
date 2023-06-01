@@ -163,3 +163,13 @@ def calculate(expression)
 
     return expression
 end
+
+user_input = ""
+
+while user_input.downcase != "exit"
+    puts "Enter an expression to calculate or type 'exit' to quit"
+    user_input = gets.chomp
+    if user_input.downcase != "exit"
+        puts calculate(user_input)
+    end
+end
