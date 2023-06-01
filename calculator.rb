@@ -1,3 +1,5 @@
+$expressions = ["+", "-", "*", "/", "(", ")"]
+
 def add(num1, num2)
     return num1 + num2
 end
@@ -16,7 +18,6 @@ end
 
 # account for exponents
 def exponent(expression)
-    expressions = ["+", "-", "*", "/", "(", ")"]
     while expression.index("^") != nil
         exponent_index = expression.index("^")
         i = exponent_index - 1
@@ -24,7 +25,7 @@ def exponent(expression)
         prev_operator_index = nil
         # find first operand
         while i >= 0
-            if expressions.include? expression[i]
+            if $expressions.include? expression[i]
                 num1 = expression[i + 1...exponent_index].to_f
                 prev_operator_index = i
                 break
@@ -45,7 +46,7 @@ def exponent(expression)
         next_operator_index = nil
         # find second operand
         while i < expression.length()
-            if expressions.include? expression[i]
+            if $expressions.include? expression[i]
                 num2 = expression[exponent_index + 1...i].to_f
                 next_operator_index = i
                 break
@@ -71,9 +72,7 @@ def exponent(expression)
 end
 
 # account for multiplication and division
-def multiply_divide(expression)
-    expressions = ["+", "-", "*", "/", "(", ")"]
-    
+def multiply_divide(expression)    
     while expression.index("*") != nil or expression.index("/") != nil
         multiply_index = expression.index("*")
         divide_index = expression.index("/")
@@ -97,7 +96,7 @@ def multiply_divide(expression)
         prev_operator_index = nil
         # find first operand
         while i >= 0
-            if expressions.include? expression[i]
+            if $expressions.include? expression[i]
                 num1 = expression[i + 1...multiply_divide_index].to_f
                 prev_operator_index = i
                 break
@@ -118,7 +117,7 @@ def multiply_divide(expression)
         next_operator_index = nil
         # find second operand
         while i < expression.length()
-            if expressions.include? expression[i]
+            if $expressions.include? expression[i]
                 num2 = expression[multiply_divide_index + 1...i].to_f
                 next_operator_index = i
                 break
@@ -149,7 +148,6 @@ end
 
 # account for addition and subtraction
 def add_subtract(expression)
-    expressions = ["+", "-", "*", "/", "(", ")"]
     while expression.index("+") != nil or expression.index("-") != nil
         add_index = expression.index("+")
         subtract_index = expression.index("-")
@@ -170,7 +168,7 @@ def add_subtract(expression)
         prev_operator_index = nil
         # find first operand
         while i >= 0
-            if expressions.include? expression[i]
+            if $expressions.include? expression[i]
                 num1 = expression[i + 1...add_subtract_index].to_f
                 prev_operator_index = i
                 break
@@ -191,7 +189,7 @@ def add_subtract(expression)
         next_operator_index = nil
         # find second operand
         while i < expression.length()
-            if expressions.include? expression[i]
+            if $expressions.include? expression[i]
                 num2 = expression[add_subtract_index + 1...i].to_f
                 next_operator_index = i
                 break
@@ -222,7 +220,6 @@ def add_subtract(expression)
 end
 
 def calculate(expression)
-    expressions = ["+", "-", "*", "/", "(", ")"]
     expression = "(" + expression.lstrip.rstrip + ")"
 
     # account for grouping first
