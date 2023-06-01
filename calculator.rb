@@ -24,6 +24,59 @@ def calculate(expression)
         start = expression.rindex("(", finish)
         grouped_expression = expression[start + 1...finish].lstrip.rstrip
 
+        # account for exponents
+        while grouped_expression.index("^") != nil
+            exponent_index = grouped_expression.index("^")
+            i = exponent_index - 1
+            num1 = nil
+            prev_operator_index = nil
+            # find first operand
+            while i >= 0
+                if expressions.include? grouped_expression[i]
+                    num1 = grouped_expression[i + 1...exponent_index].to_f
+                    prev_operator_index = i
+                    break
+                end
+                i -= 1
+            end
+
+            if num1 == nil
+                num1 = grouped_expression[0...exponent_index].to_f
+            end
+
+            if prev_operator_index == nil
+                prev_operator_index = -1
+            end
+
+            i = exponent_index + 1
+            num2 = nil
+            next_operator_index = nil
+            # find second operand
+            while i < grouped_expression.length()
+                if expressions.include? grouped_expression[i]
+                    num2 = grouped_expression[exponent_index + 1...i].to_f
+                    next_operator_index = i
+                    break
+                end
+                i += 1
+            end
+
+            if num2 == nil
+                num2 = grouped_expression[exponent_index + 1..-1].to_f
+            end
+
+            if next_operator_index == nil
+                next_operator_index = grouped_expression.length()
+            end
+
+            # perform operation
+            result = exponent(num1, num2)
+
+            # replace expression with result
+            grouped_expression = grouped_expression[0...prev_operator_index + 1] + result.to_s + grouped_expression[next_operator_index..-1]
+        end
+        
+
         # account for multiplication and division
         while grouped_expression.index("*") != nil or grouped_expression.index("/") != nil
             multiply_index = grouped_expression.index("*")
