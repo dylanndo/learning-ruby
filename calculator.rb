@@ -96,7 +96,14 @@ def multiply_divide(expression)
         prev_operator_index = nil
         # find first operand
         while i >= 0
-            if $expressions.include? expression[i]
+            # account for negative numbers
+            if expression[i] == "-"
+                if i == 0 or $expressions.include? expression[i - 1]
+                    num1 = expression[i...multiply_divide_index].to_f
+                    prev_operator_index = i - 1
+                    break
+                end
+            elsif $expressions.include? expression[i]
                 num1 = expression[i + 1...multiply_divide_index].to_f
                 prev_operator_index = i
                 break
@@ -117,7 +124,19 @@ def multiply_divide(expression)
         next_operator_index = nil
         # find second operand
         while i < expression.length()
-            if $expressions.include? expression[i]
+            # account for negative numbers
+            if expression[i] == "-" and i == multiply_divide_index + 1
+                j = i + 1
+                while j < expression.length()
+                    if $expressions.include? expression[j]
+                        num2 = expression[i...j].to_f
+                        next_operator_index = j
+                        break
+                    end
+                    j += 1
+                end
+                break
+            elsif $expressions.include? expression[i]
                 num2 = expression[multiply_divide_index + 1...i].to_f
                 next_operator_index = i
                 break
@@ -150,7 +169,15 @@ end
 def add_subtract(expression)
     while expression.index("+") != nil or expression.index("-") != nil
         add_index = expression.index("+")
-        subtract_index = expression.index("-")
+        # account for negative numbers at the beginning of the expression
+        if expression.index("-") == 0
+            subtract_index = expression[1..-1].index("-")
+            if subtract_index != nil
+                subtract_index += 1
+            end
+        else
+            subtract_index = expression.index("-")
+        end
         
         # find first operator
         if add_index == nil && subtract_index == nil
@@ -168,7 +195,14 @@ def add_subtract(expression)
         prev_operator_index = nil
         # find first operand
         while i >= 0
-            if $expressions.include? expression[i]
+            # account for negative numbers
+            if expression[i] == "-"
+                if i == 0 or $expressions.include? expression[i - 1]
+                    num1 = expression[i...add_subtract_index].to_f
+                    prev_operator_index = i - 1
+                    break
+                end
+            elsif $expressions.include? expression[i]
                 num1 = expression[i + 1...add_subtract_index].to_f
                 prev_operator_index = i
                 break
@@ -238,12 +272,24 @@ def calculate(expression)
     return expression
 end
 
+def evaluate(expression)
+    expression = expression.gsub(" ", "")
+
+    # Handle negative numbers
+    expression = expression.gsub("--", "+")
+    expression = expression.gsub("+-", "-")
+    expression = expression.gsub("*-", "*-1*")
+    expression = expression.gsub("/-", "/-1/")
+
+    return calculate(expression)
+end
+
 user_input = ""
 
 while user_input.downcase != "exit"
     puts "Enter an expression to calculate or type 'exit' to quit"
     user_input = gets.chomp
     if user_input.downcase != "exit"
-        puts calculate(user_input)
+        puts evaluate(user_input)
     end
 end
