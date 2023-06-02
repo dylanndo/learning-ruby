@@ -277,6 +277,10 @@ def calculate(expression)
 end
 
 def evaluate(expression)
+    # used to determine if the answer should be a float or an integer
+    hasDecimal = expression.include? "."
+
+    # remove all spaces
     expression = expression.gsub(" ", "")
 
     # Handle negative numbers
@@ -285,7 +289,18 @@ def evaluate(expression)
     expression = expression.gsub("*-", "*-1*")
     expression = expression.gsub("/-", "/-1/")
 
-    return calculate(expression)
+    expression = calculate(expression)
+
+    # return answer as an integer if there is no decimal
+    if hasDecimal == true
+        return expression.to_f
+    # return answer as an integer if there is a decimal but the answer is a whole number
+    elsif hasDecimal == false and expression.length >= 3 and expression[-2, 2] == ".0"
+        return expression.to_i
+    # return answer as a float if there is a decimal and the answer is not a whole number
+    else
+        return expression.to_f
+    end
 end
 
 puts "Welcome to the calculator!"
@@ -296,7 +311,7 @@ while user_input.downcase != "exit"
     puts "Enter an expression to calculate or type 'exit' to quit: "
     user_input = gets.chomp
     if user_input.downcase != "exit"
-        puts "Answer: " + evaluate(user_input)
+        puts "Answer: " + evaluate(user_input).to_s
     end
     
     puts "-----------------------------------"
