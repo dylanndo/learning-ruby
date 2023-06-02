@@ -107,7 +107,8 @@ def multiply_divide(expression)
                     prev_operator_index = i - 1
                     break
                 end
-            elsif $expressions.include? expression[i]
+            end
+            if $expressions.include? expression[i]
                 num1 = expression[i + 1...multiply_divide_index].to_f
                 prev_operator_index = i
                 break
@@ -140,7 +141,8 @@ def multiply_divide(expression)
                     j += 1
                 end
                 break
-            elsif $expressions.include? expression[i]
+            end
+            if $expressions.include? expression[i]
                 num2 = expression[multiply_divide_index + 1...i].to_f
                 next_operator_index = i
                 break
