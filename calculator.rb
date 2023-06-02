@@ -1,3 +1,7 @@
+# Dylan Do
+# Calculator Project
+# Last Edited: 06/02/2023
+
 $expressions = ["+", "-", "*", "/", "(", ")"]
 
 def add(num1, num2)
