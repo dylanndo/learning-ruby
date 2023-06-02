@@ -288,12 +288,16 @@ def evaluate(expression)
     return calculate(expression)
 end
 
+puts "Welcome to the calculator!"
+puts "-----------------------------------"
 user_input = ""
 
 while user_input.downcase != "exit"
-    puts "Enter an expression to calculate or type 'exit' to quit"
+    puts "Enter an expression to calculate or type 'exit' to quit: "
     user_input = gets.chomp
     if user_input.downcase != "exit"
-        puts evaluate(user_input)
+        puts "Answer: " + evaluate(user_input)
     end
+    
+    puts "-----------------------------------"
 end
